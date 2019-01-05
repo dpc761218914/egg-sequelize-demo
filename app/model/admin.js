@@ -12,6 +12,7 @@ module.exports = app => {
       primaryKey: true,
       comment: '主键',
     },
+    //邮箱有唯一性验证
     email: {
       allowNull: false,
       unique: true,

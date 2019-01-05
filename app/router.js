@@ -4,38 +4,26 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller, config } = app;
+  const { router, controller } = app;
+  //获取所有blog
+  router.get('/getAllArticles', controller.article.getAllArticles);
+  //根据id获取文章信息
+  router.get('/getOneArticleById/:id', controller.article.getOneArticleById);
+  //添加文章
+  router.post('/postCreateArticle', controller.article.postCreateArticle);
+   //删除文章
+  router.get('/delOneArticleById/:id', controller.article.delOneArticleById);
 
-  // 博客前台路由
-  router.get('/', controller.render.index.home);
-  router.get('/blog', controller.render.index.blog);
-  router.get('/articles/post/:id', controller.render.index.article);
-  router.get('/feed', controller.render.index.feed);
 
-  if (config.renderData._link.enable) {
-    router.get('/links', controller.render.index.links);
-  }
+  //添加管理员，添加过程中中email有唯一性认证
+  router.post('/postCreateAdmin', controller.admin.postCreateAdmin);
+  //获取所有
+  router.get('/getAllAdmins', controller.admin.getAllAdmins);
+  //根据id获取
+  router.get('/getOneAdminById/:id', controller.admin.getOneAdminById);
+  //根据id删除
+  router.get('/delOneAdminById/:id', controller.admin.delOneAdminById);
 
-  if (config.renderData._about.enable) {
-    router.get('/about', controller.render.index.about);
-  }
 
-  // 博客后台路由
-  router.get('/admin/login', controller.render.admin.login);
-  router.get('/admin/article/new', controller.render.admin.article);
-  router.get('/admin/article/edit/:id', controller.render.admin.article);
-  router.get('/admin/article/manage/:page', controller.render.admin.manage);
 
-  // RESTful API
-  router.post('/api/login', controller.api.admin.login);
-  router.post('/api/admin/auth', controller.api.admin.auth);
-  router.post('/api/admin/article/add', controller.api.article.add);
-  router.delete('/api/admin/article', controller.api.article.delete);
-  router.patch('/api/admin/article', controller.api.article.update);
-
-  // 错误页面
-  router.get('/error', controller.render.index.error);
-
-  // 404
-  router.get('/*', controller.render.index.notFound);
 };
