@@ -6,7 +6,7 @@ egg和egg-sequelize搭配使用，连接mysql
 ### 3、 启动项目，通过postman测试各增删改查接口。（如果无法自动创建表，可以将database中的sql文件在nodesql中执行）
 参考源：https://github.com/TeanBlog/TeanBlog
 
-### 4、测试egg-sequelize和原生sql语句搭配使用，没有问题
+### 4、测试egg-sequelize和原生sql语句搭配使用，没有问题。
 > // 原生sql查询所有admin信息
      async getAllAdminsBySQL() {
          const { ctx } = this;
