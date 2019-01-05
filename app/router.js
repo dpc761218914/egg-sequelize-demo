@@ -26,4 +26,10 @@ module.exports = app => {
 
 
 
+  //原生sql查询获取所有admin
+  router.get('/getAllAdminsBySQL', controller.admin.getAllAdminsBySQL);
+  router.get('/getOneAdminByIdBySQL/:id', controller.admin.getOneAdminByIdBySQL);
+
+
+
 };
