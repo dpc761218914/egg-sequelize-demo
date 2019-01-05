@@ -8,28 +8,8 @@ egg和egg-sequelize搭配使用，连接mysql
 
 ### 4、测试egg-sequelize和原生sql语句搭配使用，没有问题。（参考：https://segmentfault.com/q/1010000013912266）
 > 原生sql查询所有admin信息
-     async getAllAdminsBySQL() {
-         const { ctx } = this;
          const articles = await ctx.app.model.query('select * from admins', {type:'SELECT'});
-         ctx.body = {
-             data: articles,
-         };
-         ctx.status = 200;
-         ctx.username='data'
-     }
-     // 原生sql查询所有admin信息
-     async getOneAdminByIdBySQL() {
-         const { ctx } = this;
-         const id = ctx.params.id;
-         //如果直接写成'select * from admins where id ='+id;会报错
-         //原生的sql报错需要直接去sql图形化界面中测试sql语句是否正确，才可以写到代码中
          const articles = await ctx.app.model.query('select * from admins where id ="'+id+'"'  , {type:'SELECT'});
-         ctx.body = {
-             data: articles,
-         };
-         ctx.status = 200;
-         ctx.username='data'
-     }
 
 
 测试，这里以获取所有admin信息为例：
